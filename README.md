@@ -33,3 +33,26 @@ You can alter the runtime port of the app by setting the environment variable, `
   }
 }
 ```
+
+## Sample `docker build`
+```$xslt
+docker build -t pinger:v1 .
+```
+
+## Sample `docker run`
+```$xslt
+docker run -d --name pinger_app -p 3000:3000  -e CURRENT_VERSION=v1 pinger:v1
+```
+
+## Cleaning up Docker
+Stop the container
+
+`docker stop pinger_app`
+
+Remove the container
+
+`docker rm pinger_app`
+
+Remove the image
+
+`docker image rm pinger:v1`
