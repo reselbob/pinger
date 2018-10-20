@@ -29,8 +29,9 @@ function getRuntimeInfo(){
         });
     });
     const vers = process.env.CURRENT_VERSION || 'UNKNOWN';
+    const secretMessage = process.env.SECRET_MESSAGE || 'UNKNOWN';
 
-    return {APIVersion: vers, startTime: new Date(), interfaces};
+    return {APIVersion: vers, startTime: new Date(), interfaces, secretMessage};
 }
 
 
