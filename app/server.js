@@ -31,13 +31,14 @@ function getRuntimeInfo(){
     const vers = process.env.CURRENT_VERSION || 'UNKNOWN';
     const secretMessage = process.env.SECRET_MESSAGE || 'UNKNOWN';
 
-    return {APIVersion: vers, startTime: new Date(), interfaces, secretMessage};
+    return {APIVersion: vers, startTime: new Date(), interfaces, secretMessage, processId: process.pid};
 }
 
 
 const handleRequest = function(request, response) {
     const runtimeInfo = getRuntimeInfo();
     runtimeInfo.requestHeaders = request.headers;
+    runtimeInfo.currentTime = new Date();
     response.writeHead(200);
     response.end(JSON.stringify(runtimeInfo));
 };
