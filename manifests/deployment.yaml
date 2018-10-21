@@ -1,0 +1,24 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pinger
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pinger
+  template:
+    metadata:
+      labels:
+        app: pinger
+    spec:
+      containers:
+        - name: pinger
+          image: reselbob/pinger
+          ports:
+              containerPort: 3000
+          env:
+            - name: CURRENT_VERSION
+              value: v1
+#to check it out type, kubectl exec -it pinger_A_GUID -n default env
