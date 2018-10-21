@@ -17,6 +17,7 @@ spec:
         - name: pinger
           image: reselbob/pinger
           ports:
+            -
               containerPort: 3000
           env:
             - name: CURRENT_VERSION
