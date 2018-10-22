@@ -5,4 +5,4 @@ metadata:
 spec:
   backend:
     serviceName: pinger
-    servicePort: 80
+    servicePort: 3000
