@@ -40,7 +40,7 @@ const handleRequest = function(request, response) {
     runtimeInfo.requestHeaders = request.headers;
     runtimeInfo.currentTime = new Date();
     response.writeHead(200);
-    response.end(JSON.stringify(runtimeInfo));
+    response.end(JSON.stringify(runtimeInfo, null, 4));
 };
 
 const www = http.createServer(handleRequest);
