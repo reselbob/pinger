@@ -4,9 +4,6 @@ kind: Ingress
 metadata:
   name: pinger-ingress
 spec:
-  backend:
-    serviceName: sonofpinger
-    servicePort: 3000
   rules:
   - host:
     http:
