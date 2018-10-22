@@ -1,0 +1,17 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pinger-ingress
+spec:
+  backend:
+    serviceName: sonofpinger
+    servicePort: 3000
+  rules:
+  - host:
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pinger
+          servicePort: 3000
