@@ -36,13 +36,13 @@ function getRuntimeInfo(){
 
 
 const handleRequest = function(request, response) {
-    const runtimeInfo = getRuntimeInfo();
     runtimeInfo.requestHeaders = request.headers;
     runtimeInfo.currentTime = new Date();
     response.writeHead(200);
     response.end(JSON.stringify(runtimeInfo, null, 4));
 };
 
+const runtimeInfo = getRuntimeInfo();
 const www = http.createServer(handleRequest);
 www.listen(port, ()=>{
     console.log(`Listening on port ${port}`);
