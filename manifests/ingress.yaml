@@ -1,16 +1,8 @@
----
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: pinger-ingress
-  annotations:
-    http.port: "443"
 spec:
-  rules:
-  - host:
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: pinger
-          servicePort: 3000
+  backend:
+    serviceName: pinger
+    servicePort: 3000
