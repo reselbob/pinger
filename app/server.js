@@ -38,6 +38,7 @@ function getRuntimeInfo(){
 const handleRequest = function(request, response) {
     runtimeInfo.requestHeaders = request.headers;
     runtimeInfo.currentTime = new Date();
+    runtimeInfo.requestUrl = request.url
     response.writeHead(200);
     response.end(JSON.stringify(runtimeInfo, null, 4));
 };
