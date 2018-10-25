@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multipod
+  labels:
+    app: multipod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+      -
+        containerPort: 8080
+    env:
+      - name: DEPLOYMENT_VERSION
+        value: 123
+  - name: pinger
+    image: reselbob/pinger
+    ports:
+      -
+        containerPort: 3000
+    env:
+      - name: CURRENT_VERSION
+        value: v1
