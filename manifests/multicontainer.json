@@ -17,6 +17,12 @@
             "hostPort": 85,
             "containerPort": 80
           }
+        ],
+        "env": [
+          {
+            "name": "SECRET_MESSAGE",
+            "value": "Nginx is the bomb!"
+          }
         ]
       },
       {
@@ -26,6 +32,12 @@
           {
             "hostPort": 3000,
             "containerPort": 3000
+          }
+        ],
+        "env": [
+          {
+            "name": "SECRET_MESSAGE",
+            "value": "Pinger Rocks"
           }
         ]
       }
