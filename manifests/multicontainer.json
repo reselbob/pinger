@@ -2,9 +2,9 @@
   "kind": "Pod",
   "apiVersion": "v1",
   "metadata": {
-    "name": "nginx-mysql",
+    "name": "nginx-pinger",
     "labels": {
-      "name": "nginx-mysql"
+      "name": "nginx-pinger"
     }
   },
   "spec": {
@@ -20,12 +20,12 @@
         ]
       },
       {
-        "name": "mysql",
-        "image": "mysql",
+        "name": "pinger",
+        "image": "reselbob/pinger",
         "ports": [
           {
-            "hostPort": 3306,
-            "containerPort": 3306
+            "hostPort": 3000,
+            "containerPort": 3000
           }
         ]
       }
