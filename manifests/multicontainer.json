@@ -1,5 +1,4 @@
 {
-  "id":"nginx-mysql",
   "kind": "Pod",
   "apiVersion": "v1",
   "metadata": {
