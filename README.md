@@ -3,7 +3,7 @@ A simple Node.js app that returns information about the runtime environment.
 
 ## How to call
 
-`curl http:IP_ADDRESS:3000`
+`curl http://IP_ADDRESS:3000`
 
 WHERE `3000` is the default port.
 
