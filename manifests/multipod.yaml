@@ -1,25 +1,23 @@
----
-apiVersion: v1
+id: "nginx-mysql"
 kind: Pod
-metadata:
-  name: multipod
-  labels:
-    app: multipod
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-      -
-        containerPort: 8080
-    env:
-      - name: DEPLOYMENT_VERSION
-        value: 123
-  - name: pinger
-    image: reselbob/pinger
-    ports:
-      -
-        containerPort: 3000
-    env:
-      - name: CURRENT_VERSION
-        value: v1
+apiVersion: v1
+metadata: 
+ name: "nginx-mysql"
+ labels: 
+  name: "nginx-mysql"
+spec: 
+ containers: 
+  - 
+   name: nginx
+   image: nginx
+   ports: 
+    - 
+   hostPort: 85
+     containerPort: 80
+  - 
+   name: mysql
+   image: mysql
+   ports: 
+    - 
+   hostPort: 3306
+     containerPort: 3306
