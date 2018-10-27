@@ -2,23 +2,23 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx
+  name: feelingtracker
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: feelingtracker
   template:
     metadata:
       labels:
-        app: nginx
+        app: feelingtracker
     spec:
       containers:
-        - name: nginx
-          image: nginx
+        - name: feelingtracker
+          image: feelingtracker
           ports:
             -
-              containerPort: 80
+              containerPort: 3000
           env:
             - name: SECRET_MESSAGE
-              value: ngninx ROCKS
+              value: feelingtracker ROCKS
