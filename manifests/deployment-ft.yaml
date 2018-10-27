@@ -11,11 +11,11 @@ spec:
   template:
     metadata:
       labels:
-        app: eelingtracker
+        app: feelingtracker
     spec:
       containers:
         - name: feelingtracker
-          image: reselbob/ffeelingtracker
+          image: reselbob/feelingtracker
           ports:
             -
               containerPort: 3000
