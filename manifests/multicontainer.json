@@ -29,6 +29,7 @@
         "image": "reselbob/pinger",
         "ports": [
           {
+            "hostPort": 3000,
             "containerPort": 3000
           }
         ],
