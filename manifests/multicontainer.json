@@ -14,7 +14,6 @@
         "image": "nginx",
         "ports": [
           {
-            "hostPort": 85,
             "containerPort": 80
           }
         ],
@@ -30,7 +29,6 @@
         "image": "reselbob/pinger",
         "ports": [
           {
-            "hostPort": 3000,
             "containerPort": 3000
           }
         ],
