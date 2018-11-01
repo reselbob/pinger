@@ -1,5 +1,4 @@
 const http = require('http');
-const os = require('os');
 let i = 0;
 
 const port = process.env.PINGER_PORT || 3000;
@@ -7,9 +6,9 @@ const port = process.env.PINGER_PORT || 3000;
 function getRuntimeInfo(){
     let networkInfo;
     try {
-        networkInfo = os.networkInterfaces();
+        networkInfo = require('os').networkInterfaces();
     } catch (e) {
-        networkInfo = 'UNKNOWN';
+        networkInfo = 'UNKNOWN_OR_INACCESSIBLE';
     }
     const vers = process.env.CURRENT_VERSION || 'UNKNOWN';
     const secretMessage = process.env.SECRET_MESSAGE || 'UNKNOWN';
