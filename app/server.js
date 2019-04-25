@@ -3,6 +3,7 @@ let i = 0;
 
 const port = process.env.PINGER_PORT || 3000;
 
+
 function getRuntimeInfo(){
     let networkInfo;
     try {
@@ -10,13 +11,14 @@ function getRuntimeInfo(){
     } catch (e) {
         networkInfo = 'UNKNOWN_OR_INACCESSIBLE';
     }
-    const vers = process.env.CURRENT_VERSION || 'UNKNOWN';
+    const vers = process.env.CURRENT_VERSION || 'UNDEFINED';
     const secretMessage = process.env.SECRET_MESSAGE || 'UNKNOWN';
     return {APIVersion: vers, startTime: new Date(), secretMessage, processId: process.pid, memoryUsage: process.memoryUsage(), networkInfo};
 }
 
 
 const handleRequest = function(request, response) {
+    runtimeInfo.envVars = process.env;
     runtimeInfo.requestHeaders = request.headers;
     runtimeInfo.currentTime = new Date();
     runtimeInfo.requestUrl = request.url;
