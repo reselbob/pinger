@@ -23,8 +23,10 @@ const handleRequest = function(request, response) {
     runtimeInfo.currentTime = new Date();
     runtimeInfo.requestUrl = request.url;
     runtimeInfo.remoteAddress = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+    const str = JSON.stringify(runtimeInfo, null, 4);
     response.writeHead(200);
-    response.end(JSON.stringify(runtimeInfo, null, 4));
+    response.end(str);
+    console.log({app:"pinger",request,response});
 };
 
 const runtimeInfo = getRuntimeInfo();
