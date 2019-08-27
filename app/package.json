@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "nyc mocha",
-    "start": "node server.js"
+    "start": "node server.js",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
   "author": "Bob Reselman <reselbob@gmail.com>",
   "license": "ISC",
