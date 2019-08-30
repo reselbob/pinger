@@ -1,6 +1,4 @@
 const http = require('http');
-let i = 0;
-
 const port = process.env.PINGER_PORT || 3000;
 
 var getTypeParam = (request)=>{
@@ -63,13 +61,12 @@ const handleRequest = function (request, response) {
 const runtimeInfo = getRuntimeInfo();
 const server = http.createServer(handleRequest);
 server.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    console.log(`API Server is listening on port ${port}`);
 });
-
 
 const shutdown = () => {
     console.log(`Server shutting down at ${new Date()}`);
-    server.close()
+    server.close();
 };
 
 module.exports = {server,shutdown};
