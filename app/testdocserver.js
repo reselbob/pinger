@@ -5,6 +5,7 @@ const http = require("http"),
     port = process.argv[2] || 3001;
 
 const lnk = require('lnk');
+const globby = require('globby');
 
 
 //yeah, this is hard coding, but hey, it's a demo
@@ -26,7 +27,7 @@ const docs = path.join(__dirname, 'docs');
 console.log(`Docs dir is ${docs}`);
 
 const docRoot = lcov + '/.' //path.join(lcov, '/.');
-lnk([docRoot], docs)
+lnk(globby('coverage/lcov-report/*'), __dirname)
     .then(() => {
         console.log(`Create sym link, ${docs} to directory ${docRoot}`)
     })
@@ -38,8 +39,8 @@ lnk([docRoot], docs)
 
 
 const server =  http.createServer(function (request, response) {
-    const testDir = path.join(__dirname, 'docs');
-    console.log(`The test directory is ${testDir}`);
+    //const testDir = path.join(__dirname, 'docs');
+    //console.log(`The test directory is ${testDir}`);
 
     console.log(`The request URL is ${request.url}.`);
 
@@ -47,13 +48,13 @@ const server =  http.createServer(function (request, response) {
     console.log(`The request URI is ${uri}.`);
 
 
-    let fil = uri;
+    //let fil = uri;
 
     //Do some uri manipulation
-    if(uri.toLowerCase().indexOf('/docs/')>=0) fil = uri.replace('/docs/','');
-    if(uri.toLowerCase().indexOf('/docs')>=0) fil = uri.replace('/docs','');
+    //if(uri.toLowerCase().indexOf('/docs/')>=0) fil = uri.replace('/docs/','');
+    //if(uri.toLowerCase().indexOf('/docs')>=0) fil = uri.replace('/docs','');
 
-    let filename = path.join(testDir, fil);
+    let filename = path.join(__dirname, uri);
     console.log(`The filename to retrieve is ${filename}.`);
 
     if(uri.indexOf('stop') >=0){
