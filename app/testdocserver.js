@@ -30,12 +30,7 @@ lnk(globby('coverage/lcov-report/*'), __dirname)
 });
 
 const server =  http.createServer(function (request, response) {
-
-    console.log(`The request URL is ${request.url}.`);
-
     const uri = url.parse(request.url).pathname;
-    console.log(`The request URI is ${uri}.`);
-
     let filename = path.join(__dirname, uri);
     console.log(`The filename to retrieve is ${filename}.`);
 
