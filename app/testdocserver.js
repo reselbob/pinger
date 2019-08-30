@@ -25,7 +25,7 @@ if (!fs.existsSync(lcov)) {
 const docs = path.join(__dirname, 'docs');
 console.log(`Docs dir is ${docs}`);
 
-const docRoot = path.join(lcov, '/.');
+const docRoot = lcov + '/.' //path.join(lcov, '/.');
 lnk([docRoot], docs)
     .then(() => {
         console.log(`Create sym link, ${docs} to directory ${docRoot}`)
@@ -47,7 +47,9 @@ const server =  http.createServer(function (request, response) {
         this.close();
         return;
     }
-    let filename = path.join(process.cwd(), uri)
+
+    let filename = path.join(__dirname, uri)
+    //let filename = path.join(process.cwd(), uri)
 
 
     fs.exists(filename, function (exists) {
