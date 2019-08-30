@@ -14,7 +14,7 @@ describe('HTTP Tests: ', () => {
     it('Can access GET ALL /', function(done){
         //Go get all the lists
         supertest(server)
-            .get('/?type=network-info')
+            .get('/?type=networkInfo')
             .set('Accept', 'application/json')
             .then((res) => {
                 expect(res.body).to.be.an('object');
