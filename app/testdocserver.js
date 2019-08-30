@@ -8,17 +8,28 @@ const lnk = require('lnk');
 
 
 //yeah, this is hard coding, but hey, it's a demo
-if (!fs.existsSync('coverage')) {
-    fs.mkdirSync('coverage');
+const coverage = path.join(__dirname, 'coverage');
+if (!fs.existsSync(coverage)) {
+    console.log(`Creating ${coverage}`);
+    fs.mkdirSync(coverage);
 }
 
-if (!fs.existsSync('coverage/lcov-report')) {
-    fs.mkdirSync('coverage/lcov-report');
+const lcov = path.join(coverage, 'lcov-report');
+
+if (!fs.existsSync(lcov)) {
+    console.log(`Creating ${lcov}`);
+    fs.mkdirSync(lcov);
 }
 
 //make a docs sym link
-lnk(['coverage/lcov-report/.'], 'docs')
-    .then(() => console.log('done'))
+const docs = path.join(__dirname, 'docs');
+console.log(`Docs dir is ${docs}`);
+
+const docRoot = path.join(lcov, '/.');
+lnk([docRoot], docs)
+    .then(() => {
+        console.log(`Create sym link, ${docs} to directory ${docRoot}`)
+    })
     .catch(e => {
     console.log('Reporting file system exists already')
 });
@@ -28,7 +39,7 @@ const server =  http.createServer(function (request, response) {
 
     const uri = url.parse(request.url).pathname;
 
-    if(uri === '/docs/stop'){
+    if(uri.indexOf('stop') >=0){
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Shutting down Test Doc Server");
         response.end();
@@ -38,7 +49,9 @@ const server =  http.createServer(function (request, response) {
     }
     let filename = path.join(process.cwd(), uri)
 
+
     fs.exists(filename, function (exists) {
+        console.log(`looking for directory ${filename}`);
         if (!exists) {
             response.writeHead(404, {"Content-Type": "text/plain"});
             response.write("404 Not Found\n");
