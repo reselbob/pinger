@@ -35,9 +35,26 @@ lnk([docRoot], docs)
 });
 
 
+
+
 const server =  http.createServer(function (request, response) {
+    const testDir = path.join(__dirname, 'docs');
+    console.log(`The test directory is ${testDir}`);
+
+    console.log(`The request URL is ${request.url}.`);
 
     const uri = url.parse(request.url).pathname;
+    console.log(`The request URI is ${uri}.`);
+
+
+    let fil = uri;
+
+    //Do some uri manipulation
+    if(uri.toLowerCase().indexOf('/docs/')>=0) fil = uri.replace('/docs/','');
+    if(uri.toLowerCase().indexOf('/docs')>=0) fil = uri.replace('/docs','');
+
+    let filename = path.join(testDir, fil);
+    console.log(`The filename to retrieve is ${filename}.`);
 
     if(uri.indexOf('stop') >=0){
         response.writeHead(200, {"Content-Type": "text/plain"});
@@ -47,10 +64,6 @@ const server =  http.createServer(function (request, response) {
         this.close();
         return;
     }
-
-    let filename = path.join(__dirname, uri)
-    //let filename = path.join(process.cwd(), uri)
-
 
     fs.exists(filename, function (exists) {
         console.log(`looking for directory ${filename}`);
