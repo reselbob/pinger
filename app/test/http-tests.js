@@ -47,6 +47,18 @@ describe('HTTP Tests: ', () => {
             .catch(done);
     });
 
+    it('Can access GET memoryUsage /', function(done){
+        //Go get all the lists
+        supertest(server)
+            .get('/?type=memoryUsage')
+            .set('Accept', 'application/json')
+            .then((res) => {
+                expect(res.body).to.be.an('object');
+                done();
+            })
+            .catch(done);
+    });
+
     it('Can access GET currentTime /', function(done){
         //Go get all the lists
         supertest(server)
