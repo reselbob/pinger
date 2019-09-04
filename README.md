@@ -51,7 +51,7 @@ docker build -t pinger:v1 .
 
 ## Sample `docker run`
 ```$xslt
-docker run -d --name pinger_app -p 3000:3000  -e CURRENT_VERSION=v1 pinger:v1
+docker run -d --name pinger_app -p 3000:3000  -e CURRENT_VERSION=v1 pinger:latest
 ```
 
 ## Cleaning up Docker
