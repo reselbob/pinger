@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const describe = require('mocha').describe;
 const it = require('mocha').it;
 
-const baseURl = 'http://localhost:3000'
+const baseURl = 'http://localhost:3000';
 
 describe('Docker Tests: ', () => {
     after(function () {
