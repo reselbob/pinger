@@ -9,7 +9,8 @@
   "scripts": {
     "test": "nyc mocha",
     "start": "node server.js",
-    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test && node testdocserver.js"
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test && node testdocserver.js",
+    "docker": "mocha test/docker-tests.js"
   },
   "author": "Bob Reselman <reselbob@gmail.com>",
   "license": "ISC",
@@ -17,9 +18,7 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
-    "supertest": "^4.0.2"
-  },
-  "dependencies": {
+    "supertest": "^4.0.2",
     "globby": "^10.0.1",
     "lnk": "^1.1.0"
   }
