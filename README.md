@@ -31,11 +31,12 @@ for downloading and installing Node.js [here](https://nodejs.org/en/download/).
 
 `npm install`
 
-**Step 5:** Invoke the application
+**Step 5:** Invoke the application.
 
 `node server.js`
 
-**Step 6:** Call the application for output using `curl`
+**Step 6:** Call the application for output using `curl`. In a new terminal
+window execute the following command.
 
 `curl localhost:3000`
 
