@@ -1,7 +1,7 @@
 const http = require('http');
 const port = process.env.PINGER_PORT || 3000;
 
-var getTypeParam = (request)=>{
+const getTypeParam = (request)=>{
     let q = request.url.split('?'),result={};
     if(q.length>=2){
         q[1].split('&').forEach((item)=>{
@@ -16,10 +16,10 @@ var getTypeParam = (request)=>{
         })
     }
     return result;
-}
+};
 
 
-function getRuntimeInfo() {
+const getRuntimeInfo = () =>{
     let networkInfo;
     try {
         networkInfo = require('os').networkInterfaces();
@@ -39,13 +39,14 @@ function getRuntimeInfo() {
 }
 
 
-const handleRequest = function (request, response) {
+const handleRequest = (request, response)  => {
     const param = getTypeParam(request);
     runtimeInfo.envVars = process.env;
     runtimeInfo.requestHeaders = request.headers;
     runtimeInfo.currentTime = new Date();
     runtimeInfo.requestUrl = request.url;
     runtimeInfo.remoteAddress = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+    runtimeInfo.memoryUsage = process.memoryUsage();
 
     let rslt;
     if(param){
