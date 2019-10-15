@@ -21,5 +21,8 @@
     "supertest": "^4.0.2",
     "globby": "^10.0.1",
     "lnk": "^1.1.0"
+  },
+  "dependencies": {
+    "uuid": "^3.3.3"
   }
 }

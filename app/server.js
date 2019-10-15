@@ -1,5 +1,6 @@
 const http = require('http');
 const port = process.env.PINGER_PORT || 3000;
+const uuidv4 = require('uuid/v4');
 
 const getTypeParam = (request)=>{
     let q = request.url.split('?'),result={};
@@ -40,6 +41,9 @@ const getRuntimeInfo = () =>{
 
 
 const handleRequest = (request, response)  => {
+    response.setHeader("Content-Type", "application/json");
+    response.setHeader("x-correlation-id", uuidv4());
+
     const param = getTypeParam(request);
     runtimeInfo.envVars = process.env;
     runtimeInfo.requestHeaders = request.headers;
@@ -48,12 +52,12 @@ const handleRequest = (request, response)  => {
     runtimeInfo.remoteAddress = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
     runtimeInfo.memoryUsage = process.memoryUsage();
 
-    let rslt;
-    if(param){
+    let rslt = runtimeInfo;
+    if(param && param.length > 0){
         rslt = runtimeInfo[param] ;
     }
-    const str = JSON.stringify(rslt || runtimeInfo, null, 4);
-    response.setHeader("Content-Type", "application/json");
+    const str = JSON.stringify(rslt, null, 4);
+
     response.writeHead(200);
     response.end(str);
     console.log({app: "pinger", request, response});
