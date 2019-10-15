@@ -11,7 +11,19 @@ describe('HTTP Tests: ', () => {
     after(function () {
         shutdown();
     });
-    it('Can access GET ALL /', function(done){
+
+    it('Can access GET all /', function(done){
+        //Go get all the lists
+        supertest(server)
+            .get('/')
+            .set('Accept', 'application/json')
+            .then((res) => {
+                expect(res.body).to.be.an('object');
+                done();
+            })
+            .catch(done);
+    });
+    it('Can access GET networkInfo /', function(done){
         //Go get all the lists
         supertest(server)
             .get('/?type=networkInfo')
