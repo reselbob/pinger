@@ -1,4 +1,6 @@
 FROM node:8.9-alpine
-EXPOSE 3000
 COPY server.js .
-CMD node server.js
+COPY package.json .
+RUN npm install --only-production
+EXPOSE 3000
+CMD ["node", "server.js"]
