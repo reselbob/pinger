@@ -1,6 +1,8 @@
 # pinger
 A simple Node.js app that returns information about the runtime environment.
 
+Go [here](./app/readme.md) to read the command line reference.
+
 ## Running `pinger` on a local machine.
 The following steps describe how to run `pinger` on a standalone computer or virtual machine.
 Please be advised that the machine needs to have Node.js and `curl` installed.
@@ -76,107 +78,95 @@ You get output similar to the following:
 }
 ```
 
-## Building and running `pinger` as a Docker container
-
-This set of instructions assumes that you have the source code cloned from the project's
-respository on GitHub as described in the section above.
-
-Also, this set of instructions assumes that `Docker` installed on the local machine or
-VM where you plan to run the container.
-
-**Step 1:** To confirm `Docker` installed, type:
-
-`docker version`
-
-You'll get output similar to teh following:
-```yaml
-Client: Docker Engine - Community
- Version:           19.03.2
- API version:       1.40
- Go version:        go1.12.8
- Git commit:        6a30dfc
- Built:             Thu Aug 29 05:26:49 2019
- OS/Arch:           darwin/amd64
- Experimental:      false
-
-Server: Docker Engine - Community
- Engine:
-  Version:          19.03.2
-  API version:      1.40 (minimum version 1.12)
-  Go version:       go1.12.8
-  Git commit:       6a30dfc
-  Built:            Thu Aug 29 05:32:21 2019
-  OS/Arch:          linux/amd64
-  Experimental:     false
- containerd:
-  Version:          v1.2.6
-  GitCommit:        894b81a4b802e4eb2a91d1ce216b8817763c29fb
- runc:
-  Version:          1.0.0-rc8
-  GitCommit:        425e105d5a03fabd737a126ad93d62a9eeede87f
- docker-init:
-  Version:          0.18.0
-  GitCommit:        fec3683
-```
-Otherwise, go [here](https://docs.docker.com/install/) to learn how to install Docker on your
-local machine or VM.
+## Building and running `pinger` as a Docker container on Katacoda
 
 
-**Step 2:** Confirm that you are in the source code directory and that the file, `Dockefile`
-is in that directory. (The instructions for navigating to the source code directory are
-described in the section above, _Running `pinger` on a local machine_.)
+**Step 1:** Go to the Ubuntu Playground on Katacoda
 
-`ls -ls`
+`https://katacoda.com/courses/ubuntu/playground`
 
-You'll get output similar to the following:
+**Step 2:** Clone the project source from GitHub
 
-```text
-total 200
--rw-r--r--@   1 cooluser  staff    56B Sep  5 13:24 Dockerfile
-drwxr-xr-x  226 cooluser  staff   7.1K Aug 29 19:49 node_modules
--rw-r--r--    1 cooluser  staff    82K Aug 29 19:49 package-lock.json
--rw-r--r--    1 cooluser  staff   632B Sep  4 10:48 package.json
--rw-r--r--    1 cooluser  staff   2.1K Sep  2 09:56 server.js
-drwxr-xr-x    4 cooluser  staff   128B Sep  4 12:46 test
--rw-r--r--    1 cooluser  staff   2.2K Aug 29 20:01 testdocserver.js
+`git clone https://github.com/reselbob/pinger.git`
 
-```
+**Step 3:** Navigate to the application source code directory
 
-**Step 3:** Build the container image.
+`cd pinger/app/`
+
+**Step 4:** Build the container image.
 
 (You must be connected to the internet for this step to work.)
 
-`docker build -t pinger:v1 .`
+`docker build -t pinger:beta .`
 
-**Step 4:** Create the container get it running
+**Step 5:** Create the container get it running
 
 ```text
-docker run -d --name pinger_app -p 3001:3000  -e CURRENT_VERSION=v1 pinger:v1
+docker run -d --name pinger -p 3000:3000  -e CURRENT_VERSION=beta pinger:beta
 ```
+
+You'll get the container id as output, similar to this:
+
+`6a619a913e0c25df5adccd5e11de899a97405c43de9cfb1a0945ee81148068ae`
 Confirm the container is running:
 
-`reselbob$ docker ps -a | grep pinger`
+`docker ps -a | grep pinger`
 
 You'll get output similar to the following:
 
 ```text
-859cc53b1ea9    pinger:v1    "node server.js"    58 seconds ago   Up 57 seconds      0.0.0.0:3001->3000/tcp   pinger_app
+6a619a913e0c        pinger:beta         "node server.js"    About a minute ago   Up About a minute   0.0.0.0:3000->3000/tcp   pinger```
 ```
-**Step 5:** Call the application for output using `curl`. Notice that the instance of
-`pinger` is running on a new port number, `3001`.
+**Step 6:** Call the application for output using `curl`. 
 
-`curl localhost:3001`
+`curl localhost:3000/?type=networkInfo`
 
-**Step 6:** Let's remove the container. First we'll stop it.
+You'll get output similar to the following:
 
-`docker stop pinger_app`
+```json
+{
+    "lo": [
+        {
+            "address": "127.0.0.1",
+            "netmask": "255.0.0.0",
+            "family": "IPv4",
+            "mac": "00:00:00:00:00:00",
+            "internal": true,
+            "cidr": "127.0.0.1/8"
+        }
+    ],
+    "eth0": [
+        {
+            "address": "172.18.0.2",
+            "netmask": "255.255.255.0",
+            "family": "IPv4",
+            "mac": "02:42:ac:12:00:02",
+            "internal": false,
+            "cidr": "172.18.0.2/24"
+        }
+    ]
+}
+```
+**Step 7:** Let's open `pinger` as a web page. Click the (+) sign on the right of the
+Katacoda menu page/
 
-**Step 6:** Then, we'll remove the container
+![Pinger 1](./images/pinger-01.png)
 
-`docker rm pinger_app`
+**Step 8:** click `Select port to view on Host 1`
 
-**Step 7:** Finally, we'll remove the container image from the machine
+![Pinger 2](./images/pinger-02.png)
 
-`docker image rm pinger:v1`
+**Step 8:** Enter the port number `3000` in the textbox on the 
+web page. Then click the button, `Display Port`
+
+![Pinger 3](./images/pinger-03.png)
+
+The web page will appear. It's calling back to the running instance of
+`pinger`. 
+
+**Step 9:** If you need to work with `pinger` by calling into the Katacoda server,
+copy the URL in your browser's address bar and save it in a text file.
+
+![Pinger 4](./images/pinger-04.png)
 
 **Congratulations!** You've completed the exercise.
