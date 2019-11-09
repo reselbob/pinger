@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "nyc mocha",
+    "http_test": "mocha test/http-tests.js",
     "start": "node server.js",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test && node testdocserver.js",
     "docker": "mocha test/docker-tests.js"
