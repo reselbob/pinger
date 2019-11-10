@@ -3,5 +3,5 @@ USER root
 COPY server.js .
 COPY package.json .
 RUN npm install --only-production
-EXPOSE 3000
+EXPOSE 80
 CMD ["node", "server.js"]
