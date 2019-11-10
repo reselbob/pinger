@@ -1,5 +1,5 @@
 FROM node:8.9-alpine
-USER ubuntu
+USER root
 COPY server.js .
 COPY package.json .
 RUN npm install --only-production
