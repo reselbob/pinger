@@ -17,7 +17,9 @@ spec:
           image: reseltraining/pinger:XX_VERSION_XX
           ports:
             -
-              containerPort: 3000
+              containerPort: 80
           env:
             - name: CURRENT_VERSION
               value: v1
+            - name: PORT
+              value: 80
