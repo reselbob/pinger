@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pinger
-          image: reseltraining/pinger:latest
+          image: reseltraining/pinger:XX_VERSION_XX
           ports:
             -
               containerPort: 3000
