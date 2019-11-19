@@ -9,7 +9,9 @@ Please be advised that the machine needs to have Node.js and `curl` installed.
 
 `https://katacoda.com/courses/kubernetes/playground`
 
-`git clone `
+`git clone https://github.com/reselbob/pinger.git`
+
+`cd pinger/app`
 
 **Step 1:** Make sure that Node.js is running your computer or VM (virtual machine). Run
 the following command in a terminal window.
