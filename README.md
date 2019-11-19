@@ -7,6 +7,10 @@ Go [here](./app/readme.md) to read the command line reference.
 The following steps describe how to run `pinger` on a standalone computer or virtual machine.
 Please be advised that the machine needs to have Node.js and `curl` installed.
 
+`https://katacoda.com/courses/kubernetes/playground`
+
+`git clone `
+
 **Step 1:** Make sure that Node.js is running your computer or VM (virtual machine). Run
 the following command in a terminal window.
 
