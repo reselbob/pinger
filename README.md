@@ -7,7 +7,7 @@ Go [here](./app/readme.md) to read the command line reference.
 The following steps describe how to run `pinger` on a standalone computer or virtual machine.
 Please be advised that the machine needs to have Node.js and `curl` installed. An easy way to  run this demo is to use a the Katacode Ubuntu Playground found at this URL:
 
-`https://katacoda.com/courses/kubernetes/playground`
+`https://katacoda.com/courses/ubuntu/playground`
 
 
 **Step 1:** Make sure that Node.js is running your computer or VM (virtual machine). Run
