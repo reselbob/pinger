@@ -1,4 +1,4 @@
-FROM node:8.9-alpine
+FROM node:17-alpine3.12
 USER root
 COPY server.js .
 COPY package.json .
